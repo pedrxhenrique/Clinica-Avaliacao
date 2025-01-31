@@ -1,0 +1,49 @@
+{% extends 'pages/base.html' %}
+
+{% block titulo %}
+Lista de Especialidades
+{% endblock %}
+
+{% block conteudo %} 
+<h3>Lista de Especialidades registradas
+    <a href="{% url 'cadastrar-especialidade' %}" class="btn btn-primary btn-sm float-right">
+        Adicionar especialidade
+    </a>
+</h3>
+<hr> 
+<div class="table-responsive">
+
+    <table class="table table-striped">
+
+        <tr>
+            <th>Nome</th>
+
+            <th>Opções</th>
+
+        </tr>
+        {% for especialidade in object_list %}
+        <tr>
+            <td>{{ especialidade.nome }}</td>
+            <td>
+
+                <a href="{% url 'editar-especialidade' especialidade.pk %}" class="btn btn-warning btn-sm" title="Editar">
+                    <i class="bx bxs-edit"></i>
+                </a>
+                
+                <a href="{% url 'excluir-especialidade' especialidade.pk %}" class="btn btn-danger btn-sm" title="Excluir">
+                    <i class="bx bxs-trash"></i>
+                </a>
+                
+            </td>
+        </tr>
+                
+        {% empty %}
+        <tr>
+            <td colspan="2">
+                Nenhum campo registrado.
+'               </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
